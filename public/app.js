@@ -1,4 +1,7 @@
-const paragraph = document.querySelector('p');
+//const { json } = require("body-parser");
+
+const paragraph = document.querySelector('p')
+const envelopes = document.getElementById('envelopes');
 
 const display = async()=>{
     try{
@@ -16,4 +19,21 @@ const display = async()=>{
 
 }
 
+const getenvelops = async()=>{
+    try{
+        const response = await fetch('/envelope');
+           console.log(response);
+        if (response.ok){
+            const results = await response.json();
+         
+            
+            envelopes.textContent = JSON.stringify(results);
+
+        }
+    }catch(error){
+ console.log(error.message + ' not a json ');
+    }
+}
+
 display();
+getenvelops();
